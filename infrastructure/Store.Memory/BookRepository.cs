@@ -10,11 +10,13 @@
 		};
 
 		public Book[] GetAllByIsbn( string isbn ) {
-			throw new NotImplementedException();
+			return books.Where( book => book.Isbn == isbn.ToUpper() )
+				.ToArray();
 		}
 
-		public Book[] GetAllByTitleOrAuthor( string titlePart ) {
-			return books.Where(book => book.Title.Contains(titlePart))
+		public Book[] GetAllByTitleOrAuthor( string query ) {
+			return books.Where(book => book.Author.Contains( query )
+									|| book.Title.Contains( query ) )
 				.ToArray();
 		}
 	}
